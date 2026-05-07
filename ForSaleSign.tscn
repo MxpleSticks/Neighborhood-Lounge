@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cej7t66hfn08r"]
+
+[ext_resource type="PackedScene" uid="uid://dqbje38m1whf4" path="res://Main/ForSaleSign/for_sale_sign.glb" id="1_5tljr"]
+
+[node name="Sketchfab_Scene" unique_id=979096568 instance=ExtResource("1_5tljr")]
+
+[node name="Cube_Material_009_0" parent="Sketchfab_model/for_sale_sign_fbx/RootNode/Cube" parent_id_path=PackedInt32Array(949308108) index="0" unique_id=170745456]
+transform = Transform3D(0.19999999, 0, 0, 0, 0.20000002, 1.1368684e-13, 0, -6.661338e-16, 0.19999996, 0, 0, 0)
+
+[node name="Cube_Material_011_0" parent="Sketchfab_model/for_sale_sign_fbx/RootNode/Cube" parent_id_path=PackedInt32Array(949308108) index="1" unique_id=349442433]
+transform = Transform3D(-0.19999997, 1.7484556e-08, 1.990762e-16, -1.7484552e-08, -0.19999999, -4.5542947e-09, -1.9907118e-16, -4.55422e-09, 0.19999997, 0, -3.9249227, -4.4687397e-08)

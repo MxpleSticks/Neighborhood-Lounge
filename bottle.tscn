@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b54a4ubm4bxsb"]
+
+[ext_resource type="PackedScene" uid="uid://ebgegluit7a0" path="res://Main/Refreshment/JamPre_low_poly_open_beer_bottle.fbx" id="1_6k8ux"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xiyir"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_skn5d"]
+radius = 0.0063476563
+height = 0.05053711
+
+[node name="JamPre_low_poly_open_beer_bottle" unique_id=184588310 instance=ExtResource("1_6k8ux")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Beer" parent_id_path=PackedInt32Array(30686162) index="0" unique_id=2082490173]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+physics_material_override = SubResource("PhysicsMaterial_xiyir")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beer/StaticBody3D" index="0" unique_id=667274464]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 7.5497915e-08, 0, -7.5497915e-08, 1.0000001, 0, 0.019524945, 1.4740924e-09)
+shape = SubResource("CapsuleShape3D_skn5d")

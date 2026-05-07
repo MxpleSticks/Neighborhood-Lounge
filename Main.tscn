@@ -1,0 +1,552 @@
+[gd_scene format=3 uid="uid://dncrm74e40s4n"]
+
+[ext_resource type="Script" uid="uid://c1ucoac1gb0k4" path="res://Main.gd" id="1_fos0i"]
+[ext_resource type="PackedScene" uid="uid://dgjsyhlcyntb6" path="res://Main/Lounge Chair/reclining_lounge_portable_chair.glb" id="1_uu6xs"]
+[ext_resource type="AudioStream" uid="uid://d3l0fjuijc428" path="res://Assets/Audio/Rain.mp3" id="2_kjvhd"]
+[ext_resource type="PackedScene" uid="uid://cvw66pv5388il" path="res://Main/House/Models/House.fbx" id="2_r0du0"]
+[ext_resource type="AudioStream" uid="uid://dwkvdkj6lymk0" path="res://Assets/Audio/DrinkSound.mp3" id="3_5vvyt"]
+[ext_resource type="Script" uid="uid://cn5j2m8p8qdny" path="res://camera_3d.gd" id="3_r0du0"]
+[ext_resource type="Texture2D" uid="uid://sbegc362w0wc" path="res://Assets/Hand/hovercursor.png" id="3_trn2v"]
+[ext_resource type="Shader" uid="uid://bpgibajtl7s0j" path="res://Main.gdshader" id="4_cm0pq"]
+[ext_resource type="Texture2D" uid="uid://doe37xgplg1cf" path="res://Assets/Hand/Hand_Frame_1.png" id="5_c6i3y"]
+[ext_resource type="Texture2D" uid="uid://hqvep0onunj" path="res://Assets/Hand/Hand_Frame_2.png" id="6_c2ibq"]
+[ext_resource type="Texture2D" uid="uid://nyixgjm6tu1j" path="res://Assets/Hand/Hand_Frame_3.png" id="7_j4qnp"]
+[ext_resource type="Texture2D" uid="uid://c4x5gyaqt6ak" path="res://Assets/Icons/BottleCap1.png" id="11_fpfj3"]
+[ext_resource type="PackedScene" uid="uid://b54a4ubm4bxsb" path="res://bottle.tscn" id="12_5vvyt"]
+[ext_resource type="PackedScene" uid="uid://dc8ifpknpt18q" path="res://radio.tscn" id="12_c6i3y"]
+[ext_resource type="Script" uid="uid://d3gy07oc71g1x" path="res://radio_playlist_ui.gd" id="13_radioui"]
+[ext_resource type="Script" uid="uid://b1lydg51lc1rg" path="res://pause_menu.gd" id="14_pausemenu"]
+[ext_resource type="AudioStream" uid="uid://b613t5a8r3jtv" path="res://Assets/Audio/Wind.mp3" id="15_j4qnp"]
+[ext_resource type="PackedScene" uid="uid://cej7t66hfn08r" path="res://ForSaleSign.tscn" id="17_sc1dx"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sc1dx"]
+emission_shape = 3
+emission_box_extents = Vector3(15, 0.75, 15)
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 5.0
+initial_velocity_max = 15.049999
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.04
+
+[sub_resource type="Curve" id="Curve_kjvhd"]
+_limits = [0.0, 0.1, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.035555553, 0.04928691), 0.24538587, 0.24538587, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tuhn"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_2gh4u"]
+material = SubResource("StandardMaterial3D_5tuhn")
+size = 0.2
+curve = SubResource("Curve_kjvhd")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sc1dx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_c6i3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_c2ibq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j4qnp")
+}],
+"loop": false,
+"name": &"Grab",
+"speed": 8.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fos0i"]
+shader = ExtResource("4_cm0pq")
+shader_parameter/grain_amount = 0.06000000285
+shader_parameter/grain_size = 1.30000005849012
+shader_parameter/animate = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3dxm6"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_lgr22"]
+sky_material = SubResource("ProceduralSkyMaterial_3dxm6")
+
+[sub_resource type="Environment" id="Environment_trn2v"]
+background_mode = 2
+sky = SubResource("Sky_lgr22")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node3D" unique_id=1306284350]
+script = ExtResource("1_fos0i")
+
+[node name="Weather" type="Node3D" parent="." unique_id=2022549798]
+transform = Transform3D(-0.025826672, 0, 0.042813353, 0, 0.05, 0, -0.042813353, 0, -0.025826672, 3.741, 0.375, 10.036)
+
+[node name="Rain" type="GPUParticles3D" parent="Weather" unique_id=1244164265]
+transform = Transform3D(-10.330654, 0, -17.125334, 0, 19.999977, 0, 17.125334, 0, -10.330654, -69.15082, 327.26846, -41.61138)
+visible = false
+amount = 5000
+lifetime = 2.0
+randomness = 0.58
+visibility_aabb = AABB(-15, -20, -15, 30, 20, 30)
+trail_enabled = true
+trail_lifetime = 0.05
+process_material = SubResource("ParticleProcessMaterial_sc1dx")
+draw_pass_1 = SubResource("RibbonTrailMesh_2gh4u")
+
+[node name="RainHitbox" type="GPUParticlesCollisionBox3D" parent="Weather" unique_id=2097951205]
+transform = Transform3D(0.8721878, 0, -0.48916364, 0, 0.9998973, 0, 0.48916364, 0, 0.8721878, 67.06839, -44.46963, -161.83218)
+size = Vector3(1865.166, 60.121094, 1887.7045)
+
+[node name="RainSound" type="AudioStreamPlayer3D" parent="Weather" unique_id=883962302]
+transform = Transform3D(19.999998, 0, 4.7683716e-06, 0, 19.999998, 0, -4.7683716e-06, 0, 19.999998, -81.68906, 0, -77.85212)
+stream = ExtResource("2_kjvhd")
+volume_db = -12.0
+parameters/looping = true
+
+[node name="RainSound4" type="AudioStreamPlayer3D" parent="Weather" unique_id=2062009562]
+transform = Transform3D(19.999998, 0, 4.7683716e-06, 0, 19.999998, 0, -4.7683716e-06, 0, 19.999998, 234.13432, 0, 112.66465)
+stream = ExtResource("2_kjvhd")
+volume_db = -12.0
+parameters/looping = true
+
+[node name="RainSound2" type="AudioStreamPlayer3D" parent="Weather" unique_id=796747753]
+transform = Transform3D(19.999998, 0, 4.7683716e-06, 0, 19.999998, 0, -4.7683716e-06, 0, 19.999998, -96.5076, 0, 193.67325)
+stream = ExtResource("2_kjvhd")
+volume_db = -12.0
+parameters/looping = true
+
+[node name="RainSound3" type="AudioStreamPlayer3D" parent="Weather" unique_id=1117616205]
+transform = Transform3D(19.999998, 0, 4.7683716e-06, 0, 19.999998, 0, -4.7683716e-06, 0, 19.999998, 152.40913, 0, -218.96088)
+stream = ExtResource("2_kjvhd")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="player" type="Node3D" parent="." unique_id=1587830880]
+
+[node name="Camera3D" type="Camera3D" parent="player" unique_id=871610008]
+transform = Transform3D(-0.9021265, 0, 0.4314717, 0, 1, 0, -0.4314717, 0, -0.9021265, 4.1816134, 0.8105407, 9.842869)
+script = ExtResource("3_r0du0")
+
+[node name="RayCast3D" type="RayCast3D" parent="player/Camera3D" unique_id=1984055051]
+target_position = Vector3(0, 0, -2)
+
+[node name="DrinkSound" type="AudioStreamPlayer" parent="player/Camera3D" unique_id=1663534862]
+stream = ExtResource("3_5vvyt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="player" unique_id=2076085699]
+
+[node name="ColorRect" type="ColorRect" parent="player/CanvasLayer" unique_id=1134420723]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Hover" type="Sprite2D" parent="player/CanvasLayer/ColorRect" unique_id=1301844904]
+position = Vector2(576.00006, 320.00006)
+scale = Vector2(1.5, 1.28125)
+texture = ExtResource("3_trn2v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player/CanvasLayer/ColorRect" unique_id=1361972093]
+visible = false
+position = Vector2(576, 320.00003)
+scale = Vector2(1.4374998, 1.25)
+sprite_frames = SubResource("SpriteFrames_sc1dx")
+animation = &"Grab"
+frame = 2
+frame_progress = 1.0
+
+[node name="RadioPlaylistUI" type="Control" parent="player/CanvasLayer" unique_id=137293844]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_radioui")
+
+[node name="Dim" type="ColorRect" parent="player/CanvasLayer/RadioPlaylistUI" unique_id=1508975772]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.58)
+
+[node name="PanelContainer" type="PanelContainer" parent="player/CanvasLayer/RadioPlaylistUI" unique_id=549990803]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -200.0
+offset_right = 310.0
+offset_bottom = 200.0
+
+[node name="MarginContainer" type="MarginContainer" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer" unique_id=190110266]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer" unique_id=291285366]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=1260486077]
+layout_mode = 2
+text = "Radio Playlist"
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=1181871091]
+layout_mode = 2
+text = "Add local songs (.mp3, .ogg, .wav). Playlist loops automatically."
+autowrap_mode = 2
+
+[node name="SongList" type="ItemList" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=1770753884]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatusLabel" type="Label" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=1903953223]
+layout_mode = 2
+text = "No songs in playlist."
+autowrap_mode = 2
+
+[node name="PlaybackRow" type="HBoxContainer" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=1826821753]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PreviousButton" type="Button" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/PlaybackRow" unique_id=881362269]
+layout_mode = 2
+text = "Previous"
+
+[node name="SeekBackButton" type="Button" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/PlaybackRow" unique_id=482318913]
+layout_mode = 2
+text = "-5s"
+
+[node name="PauseResumeButton" type="Button" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/PlaybackRow" unique_id=1495485679]
+layout_mode = 2
+text = "Pause"
+
+[node name="SeekForwardButton" type="Button" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/PlaybackRow" unique_id=653707711]
+layout_mode = 2
+text = "+5s"
+
+[node name="NextButton" type="Button" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/PlaybackRow" unique_id=2075860632]
+layout_mode = 2
+text = "Skip"
+
+[node name="ToggleRow" type="HBoxContainer" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=607538098]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="ShuffleToggle" type="CheckButton" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/ToggleRow" unique_id=922281844]
+layout_mode = 2
+text = "Shuffle"
+
+[node name="RepeatSongToggle" type="CheckButton" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/ToggleRow" unique_id=963383717]
+layout_mode = 2
+text = "Repeat Song"
+
+[node name="LoopPlaylistToggle" type="CheckButton" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/ToggleRow" unique_id=714099077]
+layout_mode = 2
+button_pressed = true
+text = "Loop Playlist"
+
+[node name="VolumeRow" type="HBoxContainer" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=1128097111]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VolumeTextLabel" type="Label" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/VolumeRow" unique_id=1983077836]
+layout_mode = 2
+text = "Radio Volume"
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/VolumeRow" unique_id=899383630]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 0.1
+
+[node name="VolumeValueLabel" type="Label" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/VolumeRow" unique_id=1327284523]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "10%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=638784702]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="AddSongsButton" type="Button" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/ButtonRow" unique_id=683185374]
+layout_mode = 2
+text = "Add Songs"
+
+[node name="RemoveSongButton" type="Button" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/ButtonRow" unique_id=1836603942]
+layout_mode = 2
+text = "Remove Selected"
+
+[node name="CloseButton" type="Button" parent="player/CanvasLayer/RadioPlaylistUI/PanelContainer/MarginContainer/VBoxContainer/ButtonRow" unique_id=1597047838]
+layout_mode = 2
+text = "Close"
+
+[node name="MusicFileDialog" type="FileDialog" parent="player/CanvasLayer/RadioPlaylistUI" unique_id=1718705298]
+title = "Open File(s)"
+size = Vector2i(900, 600)
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.mp3 ; MP3 Audio", "*.ogg ; OGG Audio", "*.wav ; WAV Audio")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="player/CanvasLayer/RadioPlaylistUI" unique_id=200012793]
+
+[node name="PauseMenu" type="Control" parent="player/CanvasLayer" unique_id=1672508445]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_pausemenu")
+
+[node name="Dim" type="ColorRect" parent="player/CanvasLayer/PauseMenu" unique_id=1388965084]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="CenterContainer" type="CenterContainer" parent="player/CanvasLayer/PauseMenu" unique_id=1490312123]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuVBox" type="VBoxContainer" parent="player/CanvasLayer/PauseMenu/CenterContainer" unique_id=1792433457]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PauseTitle" type="Label" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox" unique_id=196904527]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox" unique_id=175754445]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+text = "Continue"
+
+[node name="MainMenuButton" type="Button" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox" unique_id=1817882787]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="OptionsButton" type="Button" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox" unique_id=177835471]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox" unique_id=1831773902]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+text = "Quit"
+
+[node name="OptionsBox" type="VBoxContainer" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox" unique_id=1501647249]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VolumeRow" type="HBoxContainer" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox" unique_id=1971137614]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VolumeTextLabel" type="Label" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox/VolumeRow" unique_id=1499362845]
+layout_mode = 2
+text = "Volume"
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox/VolumeRow" unique_id=1663484013]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="VolumeValueLabel" type="Label" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox/VolumeRow" unique_id=175848772]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DrinkSfxRow" type="HBoxContainer" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox" unique_id=749659103]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DrinkSfxTextLabel" type="Label" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox/DrinkSfxRow" unique_id=1487769023]
+layout_mode = 2
+text = "Drink SFX"
+vertical_alignment = 1
+
+[node name="DrinkSfxSlider" type="HSlider" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox/DrinkSfxRow" unique_id=633205536]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="DrinkSfxValueLabel" type="Label" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox/DrinkSfxRow" unique_id=567048211]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BeerTrackerToggle" type="CheckButton" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox" unique_id=1146082294]
+layout_mode = 2
+button_pressed = true
+text = "Show Beer UI"
+
+[node name="EventsToggle" type="CheckButton" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox" unique_id=1014986075]
+layout_mode = 2
+button_pressed = true
+text = "Enable Events"
+
+[node name="WeatherToggle" type="CheckButton" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox" unique_id=1930584075]
+layout_mode = 2
+button_pressed = true
+text = "Enable Weather"
+
+[node name="WeatherSoundToggle" type="CheckButton" parent="player/CanvasLayer/PauseMenu/CenterContainer/MenuVBox/OptionsBox" unique_id=1930584076]
+layout_mode = 2
+button_pressed = true
+text = "Weather Sounds"
+
+[node name="Filter" type="ColorRect" parent="player/CanvasLayer" unique_id=1025221192]
+material = SubResource("ShaderMaterial_fos0i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BeerTrackerUI" type="HBoxContainer" parent="player/CanvasLayer" unique_id=935292678]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_right = -17.0
+offset_bottom = 62.0
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="BeerIcon" type="TextureRect" parent="player/CanvasLayer/BeerTrackerUI" unique_id=1299026180]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+texture = ExtResource("11_fpfj3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BeerCounterLabel" type="Label" parent="player/CanvasLayer/BeerTrackerUI" unique_id=1983677323]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1426968749]
+environment = SubResource("Environment_trn2v")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1155341630]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Lounge Chair" parent="." unique_id=1532865980 instance=ExtResource("1_uu6xs")]
+transform = Transform3D(0.8958281, 0, -0.44440067, 0, 1, 0, 0.44440067, 0, 0.8958281, 4.121907, -0.29814062, 9.997038)
+
+[node name="House" parent="." unique_id=1814221086 instance=ExtResource("2_r0du0")]
+
+[node name="Refreshment" parent="." unique_id=184588310 groups=["bottle"] instance=ExtResource("12_5vvyt")]
+transform = Transform3D(-0.025826672, 0, 0.042813353, 0, 0.05, 0, -0.042813353, 0, -0.025826672, 3.741, 0.375, 10.036)
+
+[node name="Radio" parent="." unique_id=192503111 groups=["radio"] instance=ExtResource("12_c6i3y")]
+transform = Transform3D(-1.6459438, 0, -1.6632705, 0, 2.34, 0, 1.6632705, 0, -1.6459438, 4.959, -0.294, 10.701)
+
+[node name="RadioAudio3D" type="AudioStreamPlayer3D" parent="." unique_id=1542219488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.959, -0.294, 10.701)
+
+[node name="Lamp1" type="SpotLight3D" parent="." unique_id=1834524742]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 15.327878, 8.143614, 31.754286)
+light_energy = 16.0
+spot_range = 9.814348
+spot_angle = 29.241354
+
+[node name="Lamp2" type="SpotLight3D" parent="." unique_id=343681993]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -14.100302, 8.143614, 50.950924)
+light_energy = 16.0
+spot_range = 9.814348
+spot_angle = 29.241354
+
+[node name="Lamp3" type="SpotLight3D" parent="." unique_id=2084346472]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -50.590477, 8.143614, 50.950924)
+light_energy = 16.0
+spot_range = 9.814348
+spot_angle = 29.241354
+
+[node name="Lamp4" type="SpotLight3D" parent="." unique_id=895189833]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -85.24579, 8.143614, 50.950924)
+light_energy = 16.0
+spot_range = 9.814348
+spot_angle = 29.241354
+
+[node name="Lamp5" type="SpotLight3D" parent="." unique_id=1862441035]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -50.70553, 8.143614, 36.876205)
+light_energy = 16.0
+spot_range = 9.814348
+spot_angle = 29.241354
+
+[node name="Lamp6" type="SpotLight3D" parent="." unique_id=480063529]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -76.42552, 8.143614, 33.370693)
+light_energy = 16.0
+spot_range = 9.814348
+spot_angle = 29.241354
+
+[node name="Wind" type="AudioStreamPlayer" parent="." unique_id=1519816855]
+stream = ExtResource("15_j4qnp")
+autoplay = true
+parameters/looping = true
+
+[node name="ForSaleSign" parent="." unique_id=979096568 instance=ExtResource("17_sc1dx")]
+transform = Transform3D(3.2783584e-10, 0, 0.014249992, 0, 0.014249992, 0, 0.0075000096, 0, -6.228869e-10, 1.1520112, 0.57682514, 55.468388)

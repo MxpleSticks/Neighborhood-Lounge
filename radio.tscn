@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dc8ifpknpt18q"]
+
+[ext_resource type="PackedScene" uid="uid://fcpxtls88smg" path="res://Main/Radio/vintage_radio.glb" id="1_flxc7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_543sh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qxe27"]
+size = Vector3(1.2, 0.90000004, 0.4)
+
+[node name="Sketchfab_Scene" unique_id=192503111 instance=ExtResource("1_flxc7")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/482667c85c584977b9e75de699b8244d_fbx/RootNode/MDCNRCTUP740_LOD0/MDCNRCTUP740_LOD0_lambert1_0" parent_id_path=PackedInt32Array(799796846) index="0" unique_id=1669240378]
+physics_material_override = SubResource("PhysicsMaterial_543sh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/482667c85c584977b9e75de699b8244d_fbx/RootNode/MDCNRCTUP740_LOD0/MDCNRCTUP740_LOD0_lambert1_0/StaticBody3D" index="0" unique_id=1222969708]
+transform = Transform3D(19.999998, 0, 0, 0, 19.999998, 0, 0, 0, 19.999998, 1, 8.999999, 6.519258e-07)
+shape = SubResource("BoxShape3D_qxe27")

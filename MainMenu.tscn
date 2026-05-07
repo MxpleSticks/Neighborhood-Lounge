@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://bim36edww4rr"]
+
+[ext_resource type="Script" uid="uid://q422ix7u2n5q" path="res://MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Shader" uid="uid://bpgibajtl7s0j" path="res://Main.gdshader" id="2_7r1g0"]
+[ext_resource type="PackedScene" uid="uid://dgjsyhlcyntb6" path="res://Main/Lounge Chair/reclining_lounge_portable_chair.glb" id="2_iwfq2"]
+[ext_resource type="PackedScene" uid="uid://cvw66pv5388il" path="res://Main/House/Models/House.fbx" id="3_7r1g0"]
+[ext_resource type="PackedScene" uid="uid://b54a4ubm4bxsb" path="res://bottle.tscn" id="4_cqjrg"]
+[ext_resource type="PackedScene" uid="uid://dc8ifpknpt18q" path="res://radio.tscn" id="5_e2xy7"]
+[ext_resource type="AudioStream" uid="uid://c1tgojff8pfsl" path="res://Assets/Audio/MainMenuMusic.mp3" id="7_cqjrg"]
+[ext_resource type="AudioStream" uid="uid://b613t5a8r3jtv" path="res://Assets/Audio/Wind.mp3" id="8_e2xy7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqjrg"]
+shader = ExtResource("2_7r1g0")
+shader_parameter/grain_amount = 0.06000000285
+shader_parameter/grain_size = 1.30000005849012
+shader_parameter/animate = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iwfq2"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_7r1g0"]
+sky_material = SubResource("ProceduralSkyMaterial_iwfq2")
+
+[sub_resource type="Environment" id="Environment_cqjrg"]
+background_mode = 2
+background_energy_multiplier = 0.38
+sky = SubResource("Sky_7r1g0")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="MainMenu" type="Control" unique_id=1824456611]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mainmenu")
+
+[node name="Filter" type="ColorRect" parent="." unique_id=367331817]
+material = SubResource("ShaderMaterial_cqjrg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=189527246]
+environment = SubResource("Environment_cqjrg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1476286294]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+shadow_enabled = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=1146414730]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=226453469]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -280.0
+offset_top = -34.0
+offset_right = 280.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 54
+text = "Neighborhood Lounge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=128054177]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.42
+anchor_right = 0.5
+anchor_bottom = 0.42
+offset_left = -130.0
+offset_top = -14.0
+offset_right = 130.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "Start"
+flat = true
+
+[node name="OptionsButton" type="Button" parent="." unique_id=991549897]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -38.0
+offset_right = 130.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "Options"
+flat = true
+
+[node name="QuitButton" type="Button" parent="." unique_id=871553766]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.58
+anchor_right = 0.5
+anchor_bottom = 0.58
+offset_left = -130.0
+offset_top = -62.0
+offset_right = 130.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+flat = true
+
+[node name="VolumeLabel" type="Label" parent="." unique_id=808127260]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.77
+anchor_right = 0.5
+anchor_bottom = 0.77
+offset_left = -160.0
+offset_top = -18.0
+offset_right = 160.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Volume: 100%"
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="." unique_id=608953398]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.84
+anchor_right = 0.5
+anchor_bottom = 0.84
+offset_left = -160.0
+offset_top = -18.0
+offset_right = 160.0
+offset_bottom = 18.0
+value = 100.0
+
+[node name="StatusLabel" type="Label" parent="." unique_id=1058257512]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.94
+anchor_right = 0.5
+anchor_bottom = 0.94
+offset_left = -370.0
+offset_top = -20.0
+offset_right = 370.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "Press Options for settings."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Node3D" type="Node3D" parent="." unique_id=389040104]
+
+[node name="Lounge Chair" parent="Node3D" unique_id=1532865980 instance=ExtResource("2_iwfq2")]
+transform = Transform3D(0.8958281, 0, -0.44440067, 0, 1, 0, 0.44440067, 0, 0.8958281, 4.121907, -0.29814062, 9.997038)
+
+[node name="House" parent="Node3D" unique_id=1814221086 instance=ExtResource("3_7r1g0")]
+
+[node name="Refreshment" parent="Node3D" unique_id=184588310 groups=["bottle"] instance=ExtResource("4_cqjrg")]
+transform = Transform3D(-0.025826672, 0, 0.042813353, 0, 0.05, 0, -0.042813353, 0, -0.025826672, 3.741, 0.375, 10.036)
+
+[node name="Radio" parent="Node3D" unique_id=192503111 groups=["radio"] instance=ExtResource("5_e2xy7")]
+transform = Transform3D(-1.6459438, 0, -1.6632705, 0, 2.34, 0, 1.6632705, 0, -1.6459438, 4.959, -0.294, 10.701)
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=124918333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.075245, 1.6651616, 14.873393)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=165244482]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.3601875, 3.151815, 10.042604)
+light_energy = 2.495
+spot_angle = 33.10635
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=785217318]
+stream = ExtResource("7_cqjrg")
+volume_db = -25.0
+autoplay = true
+parameters/looping = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=378058418]
+stream = ExtResource("8_e2xy7")
+autoplay = true
+parameters/looping = true
