@@ -30,6 +30,10 @@ Controls:
 - middle click: zoom in
 - esc: pause menu
 
-How to run:
+Run without Godot (recommended):
+1) Download the latest build from [itch.io](https://maple-sticks.itch.io/neighborhood-lounge)
+2) Open the downloaded game build and run the executable
+
+Run from source (Godot):
 1) Open the project in Godot
 2) Run `MainMenu.tscn`
