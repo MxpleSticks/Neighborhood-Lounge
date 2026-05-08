@@ -23,7 +23,8 @@ window/size/mode=3
 
 folder_colors={
 "res://Assets/Audio/": "orange",
-"res://Assets/Icons/": "red"
+"res://Assets/Icons/": "red",
+"res://Assets/Logo/": "blue"
 }
 
 [global_group]
