@@ -159,6 +159,26 @@
 [ext_resource type="Texture2D" uid="uid://crunej2kimvid" path="res://Assets/Logo/frame_148_delay-0.1s.png" id="157_ecsnv"]
 [ext_resource type="Texture2D" uid="uid://bd65xjlqjkt41" path="res://Assets/Logo/frame_149_delay-0.1s.png" id="158_y7tei"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqjrg"]
+shader = ExtResource("2_7r1g0")
+shader_parameter/grain_amount = 0.06000000285
+shader_parameter/grain_size = 1.30000005849012
+shader_parameter/animate = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iwfq2"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_7r1g0"]
+sky_material = SubResource("ProceduralSkyMaterial_iwfq2")
+
+[sub_resource type="Environment" id="Environment_cqjrg"]
+background_mode = 2
+background_energy_multiplier = 0.38
+sky = SubResource("Sky_7r1g0")
+tonemap_mode = 2
+glow_enabled = true
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bcp7c"]
 animations = [{
 "frames": [{
@@ -617,26 +637,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqjrg"]
-shader = ExtResource("2_7r1g0")
-shader_parameter/grain_amount = 0.06000000285
-shader_parameter/grain_size = 1.30000005849012
-shader_parameter/animate = true
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iwfq2"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_7r1g0"]
-sky_material = SubResource("ProceduralSkyMaterial_iwfq2")
-
-[sub_resource type="Environment" id="Environment_cqjrg"]
-background_mode = 2
-background_energy_multiplier = 0.38
-sky = SubResource("Sky_7r1g0")
-tonemap_mode = 2
-glow_enabled = true
-
 [node name="MainMenu" type="Control" unique_id=1824456611]
 layout_mode = 3
 anchors_preset = 15
@@ -645,12 +645,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mainmenu")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1263755173]
-position = Vector2(928, 424)
-scale = Vector2(0.48999998, 0.49)
-sprite_frames = SubResource("SpriteFrames_bcp7c")
-autoplay = "default"
 
 [node name="Filter" type="ColorRect" parent="." unique_id=367331817]
 material = SubResource("ShaderMaterial_cqjrg")
@@ -808,6 +802,44 @@ text = "Press Options for settings."
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="BrandingCorner" type="Control" parent="." unique_id=2123456789]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_top = -220.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="logo" type="AnimatedSprite2D" parent="BrandingCorner" unique_id=1263755173]
+position = Vector2(260, 62)
+scale = Vector2(0.48999998, 0.49)
+sprite_frames = SubResource("SpriteFrames_bcp7c")
+autoplay = "default"
+
+[node name="Credit" type="Label" parent="BrandingCorner" unique_id=807526038]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 179.0
+offset_top = 17.0
+offset_right = 66.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Made by: MapleSticks"
+horizontal_alignment = 2
+vertical_alignment = 2
+
 [node name="Node3D" type="Node3D" parent="." unique_id=389040104]
 
 [node name="Lounge Chair" parent="Node3D" unique_id=1532865980 instance=ExtResource("2_iwfq2")]
@@ -839,18 +871,3 @@ parameters/looping = true
 stream = ExtResource("8_e2xy7")
 autoplay = true
 parameters/looping = true
-
-[node name="Credit" type="Label" parent="." unique_id=807526038]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 848.0
-offset_top = 504.0
-offset_right = -137.0
-offset_bottom = -121.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-text = "Made by: MapleSticks"
