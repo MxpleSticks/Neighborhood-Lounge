@@ -8,7 +8,7 @@
 
 Neighborhood Lounge
 
-A small cozy Godot project.
+A small relaxed Godot project.
 Neighborhood Lounge is a laid-back first-person experience focused on atmosphere, where you hang out and let time pass.
 
 You can:
