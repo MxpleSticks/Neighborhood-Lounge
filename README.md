@@ -1,8 +1,10 @@
+```text
    _  __    _      __   __            __                __   __                          
   / |/ /__ (_)__ _/ /  / /  ___  ____/ /  ___  ___  ___/ /  / /  ___  __ _____  ___ ____ 
  /    / -_) / _ `/ _ \/ _ \/ _ \/ __/ _ \/ _ \/ _ \/ _  /  / /__/ _ \/ // / _ \/ _ `/ -_)
 /_/|_/\__/_/\_, /_//_/_.__/\___/_/ /_//_/\___/\___/\_,_/  /____/\___/\_,_/_//_/\_, /\__/ 
 		   /___/                                                             /___/      
+```
 
 Neighborhood Lounge
 
@@ -28,6 +30,10 @@ Controls:
 - middle click: zoom in
 - esc: pause menu
 
-How to run:
+Run without Godot (recommended):
+1) Download the latest build from [itch.io](https://maple-sticks.itch.io/neighborhood-lounge)
+2) Open the downloaded game build and run the executable
+
+Run from source (Godot):
 1) Open the project in Godot
 2) Run `MainMenu.tscn`
